@@ -26,6 +26,9 @@ libraryDependencies += "com.h2database" % "h2" % "1.4.199"
 libraryDependencies += "com.pauldijou" %% "jwt-play-json" % "4.2.0"
 libraryDependencies += "org.mindrot" % "jbcrypt" % "0.3m"
 
+
+val macWireVersion = "2.4.0"
+
 libraryDependencies ++= Seq(
 //  "com.typesafe.akka" %% "akka-actor" % akkaVersion,
 //  "com.typesafe.akka" %% "akka-testkit" % akkaVersion,
@@ -35,8 +38,13 @@ libraryDependencies ++= Seq(
   "commons-logging" % "commons-logging" % "1.1.3",
   "com.rallyhealth" %% "weepickle-v1" % "1.4.0",
   "com.typesafe.play" %% "play-json" % "2.8.1",
-//  "com.typesafe.play" % "play-json_2.11" % "2.5.1",
   "com.rallyhealth" %% s"weejson-play28-v1" % "1.0.0",
+  "com.rallyhealth.rq" %% "lib-rq-client-api-v1" % "1.24.1",
+  "com.softwaremill.macwire" %% "macros" % macWireVersion % "provided",
+  "com.softwaremill.macwire" %% "proxy" % macWireVersion,
+  "com.softwaremill.macwire" %% "util" % macWireVersion
+  
+  
 //  "com.rallyhealth.chopshop" % "careteam-client-play25_2.11" % "3.53.0"
 //  "com.rallyhealth.chopshop" %% s"lib-chopshop-common-$component" % libChopshopCommonVersion shaded,
 //  "com.rallyhealth.chopshop" %% s"lib-chopshop-server-$component" % libChopshopServerVersion,
