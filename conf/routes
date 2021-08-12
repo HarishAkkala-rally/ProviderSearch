@@ -22,3 +22,5 @@ POST    /api/register                 controllers.HomeController.register()
 
 # Serve static assets under public directory
 GET     /*file                      controllers.FrontendController.assetOrDefault(file)
+
+GET        /api/getPcps             controllers.PlayTestController.getPcps
