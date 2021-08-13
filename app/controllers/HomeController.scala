@@ -10,7 +10,8 @@ import pdi.jwt.{JwtAlgorithm, JwtClaim, JwtJson}
 import play.api.Configuration
 import play.api.libs.json.Json
 import play.api.mvc._
-import utils.PasswordUtil
+import scalaj.http.{Http, HttpOptions}
+import utils.{LegacyCookieGenerator, PasswordUtil}
 
 
 @Singleton
@@ -60,5 +61,21 @@ class HomeController @Inject()(cc: ControllerComponents, config: Configuration,u
 
   def appSummary = userAction { request =>
     Ok(Json.obj("content" -> s"Blah..Blah.."))
+  }
+
+  def getPcps = userAction {
+    request => {
+      Ok(Json.toJson(getResult().toString))
+    }
+  }
+
+  private def getResult() = {
+    val rallyId = "0414ea4a-9df0-4976-9797-7f9b52deee9e"
+
+    Http("http://localhost:8018/rest/careteam/playResult/" + rallyId)
+      .headers(LegacyCookieGenerator.encodeSessionCookie(rallyId))
+      .header("Content-Type", "application/json")
+      .header("Charset", "UTF-8")
+      .option(HttpOptions.readTimeout(1000000)).asString
   }
 }

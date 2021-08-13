@@ -7,6 +7,7 @@ GET     /                           controllers.FrontendController.index()
 
 # An example route (Prefix all API routes with apiPrefix defined in application.conf)
 
+GET     /api/getPcps             controllers.HomeController.getPcps()
 
 GET     /api/summary                controllers.HomeController.appSummary
 
@@ -23,4 +24,4 @@ POST    /api/register                 controllers.HomeController.register()
 # Serve static assets under public directory
 GET     /*file                      controllers.FrontendController.assetOrDefault(file)
 
-GET        /api/getPcps             controllers.PlayTestController.getPcps
+

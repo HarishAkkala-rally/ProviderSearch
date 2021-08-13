@@ -42,7 +42,8 @@ libraryDependencies ++= Seq(
   "com.rallyhealth.rq" %% "lib-rq-client-api-v1" % "1.24.1",
   "com.softwaremill.macwire" %% "macros" % macWireVersion % "provided",
   "com.softwaremill.macwire" %% "proxy" % macWireVersion,
-  "com.softwaremill.macwire" %% "util" % macWireVersion
+  "com.softwaremill.macwire" %% "util" % macWireVersion,
+  "org.scalaj" %% "scalaj-http" % "2.4.2"
   
   
 //  "com.rallyhealth.chopshop" % "careteam-client-play25_2.11" % "3.53.0"

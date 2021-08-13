@@ -33,6 +33,9 @@ function ProviderSearch() {
   const [providers, setProviders] = useState<Provider[]>([]);
 
   useEffect(() => {
+    axios.get('/api/getPcps')
+
+
     axios.get('/api/providers').then(
       result => {
         if (result.status === 401)
