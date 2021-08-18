@@ -31,6 +31,7 @@ ReactDOM.render((
       <Switch>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
+        {/*<Route exact={false} path="/" component={ProviderSearch} />*/}
         <ProtectedRoute exact={false} path="/" component={ProviderSearch} />
       </Switch>
     </BrowserRouter>

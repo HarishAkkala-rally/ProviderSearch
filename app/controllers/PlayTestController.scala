@@ -6,7 +6,7 @@ import javax.inject._
 import play.api.Configuration
 import play.api.libs.json.Json
 import play.api.mvc._
-import utils.LegacyCookieGenerator
+import utils.{CookieGenerator}
 import com.rallyhealth.rq.v1.handler.Predicate.{OkOrNotFound, PredicateHandler}
 import play.api.http.HttpVerbs
 import scalaj.http.{Http, HttpOptions}
@@ -26,7 +26,7 @@ class PlayTestController @Inject()(cc: ControllerComponents, config: Configurati
     val rallyId = "0414ea4a-9df0-4976-9797-7f9b52deee9e"
 
     Http("http://localhost:8018/rest/careteam/playResult/" + rallyId)
-      .headers(LegacyCookieGenerator.encodeSessionCookie(rallyId))
+//      .headers(CookieGenerator.encodeSessionCookie(rallyId))
       .header("Content-Type", "application/json")
       .header("Charset", "UTF-8")
       .option(HttpOptions.readTimeout(100000)).asString

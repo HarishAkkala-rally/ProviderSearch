@@ -34,7 +34,7 @@ function ProviderSearch() {
 
   useEffect(() => {
     axios.get('/api/getPcps')
-
+    axios.get('/api/getPlay28ResultFromPlay25')
 
     axios.get('/api/providers').then(
       result => {

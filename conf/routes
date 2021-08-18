@@ -7,7 +7,10 @@ GET     /                           controllers.FrontendController.index()
 
 # An example route (Prefix all API routes with apiPrefix defined in application.conf)
 
-GET     /api/getPcps             controllers.HomeController.getPcps()
+GET     /api/getPcps                            controllers.HomeController.getPcps()
+
++nocsrf
+GET     /api/getPlay28ResultFromPlay25          controllers.HomeController.getPlay28ResultFromPlay25()
 
 GET     /api/summary                controllers.HomeController.appSummary
 

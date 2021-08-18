@@ -3,7 +3,7 @@ package controllers
 import java.security.MessageDigest
 import java.time.Clock
 
-import Actions.UserAction
+import Actions.{AuthSessionAction, UserAction}
 import Models.User
 import javax.inject._
 import pdi.jwt.{JwtAlgorithm, JwtClaim, JwtJson}
@@ -11,11 +11,11 @@ import play.api.Configuration
 import play.api.libs.json.Json
 import play.api.mvc._
 import scalaj.http.{Http, HttpOptions}
-import utils.{LegacyCookieGenerator, PasswordUtil}
+import utils.{CookieGenerator, PasswordUtil}
 
 
 @Singleton
-class HomeController @Inject()(cc: ControllerComponents, config: Configuration,userAction: UserAction) extends AbstractController(cc) {
+class HomeController @Inject()(cc: ControllerComponents, config: Configuration,userAction: UserAction, authSessionAction: AuthSessionAction) extends AbstractController(cc) {
 
   val jwtSecret = config.get[String]("jwtSecret")
   val tokenExpiry = 1200
@@ -69,11 +69,19 @@ class HomeController @Inject()(cc: ControllerComponents, config: Configuration,u
     }
   }
 
+  def getPlay28ResultFromPlay25 = authSessionAction {
+    request => {
+      Ok(Json.toJson("Play28 from Play25 Cookie Authorization Success"))
+//      Ok("Play28 from Play25 Cookie Authorization Success!!")
+    }
+  }
+
   private def getResult() = {
     val rallyId = "0414ea4a-9df0-4976-9797-7f9b52deee9e"
 
     Http("http://localhost:8018/rest/careteam/playResult/" + rallyId)
-      .headers(LegacyCookieGenerator.encodeSessionCookie(rallyId))
+//      .headers(CookieGenerator.encodeSessionCookie(rallyId))
+      .headers(CookieGenerator.encodeAuthSessionCookie(rallyId))
       .header("Content-Type", "application/json")
       .header("Charset", "UTF-8")
       .option(HttpOptions.readTimeout(1000000)).asString
